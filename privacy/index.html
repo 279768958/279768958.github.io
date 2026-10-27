@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy · 日记豆</title>
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #faf6ee; color: #292524; }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+    h1 { font-size: 1.5rem; margin: 0 0 .25rem; }
+    h2 { font-size: 1rem; margin: 1.5rem 0 .4rem; }
+    p, li { font-size: .95rem; }
+    .meta { color: #78716c; font-size: .85rem; }
+    nav { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1rem 0 1.25rem; }
+    button { border: 1px solid #e7e5e4; background: #fff; border-radius: 999px; padding: .3rem .7rem; font: inherit; font-size: .8rem; }
+    button[aria-pressed="true"] { background: #f59e0b; border-color: #f59e0b; color: #fff; }
+    a { color: #92400e; }
+  </style>
+</head>
+<body>
+  <main>
+    <nav id="langs"></nav>
+    <h1 id="title"></h1>
+    <p class="meta" id="meta"></p>
+    <div id="body"></div>
+  </main>
+  <script>
+    const CONTACT = '279768958@qq.com';
+    const UPDATED = '2026-10-24';
+    const COPY = {
+      zh: {
+        html: 'zh-Hans',
+        name: '中文',
+        title: '日记豆隐私政策',
+        meta: '更新日期 ' + UPDATED + ' · 联系 ' + CONTACT,
+        sections: [
+          ['我们是谁', '日记豆是记在本机上的情绪日记。联系邮箱是 ' + CONTACT + '。'],
+          ['存在设备上的内容', '日记、心情、标签、照片、日程和外观设置只存在这台设备。我们读不到这些内容。'],
+          ['我们不做的事', '没有账号，没有广告，没有追踪，不出售个人数据，不上传日记，也没有接入第三方广告或统计组件。面容解锁由系统核验，我们不取得人脸信息。你主动分享海报时，内容只按你的分享操作离开设备。为了知道「今天」是哪一天，应用会向 apple.com 或 cloudflare.com 发送一个不含任何内容的请求，只读取回应里的日期；这两个站点按它们自己的隐私政策处理网络请求。'],
+          ['权限', '相机和相册用于把照片放进当天日记。日历用于把你写下的安排抄进系统里一本名为「日记豆」的日历。通知用于到点提醒。面容用于打开日记锁。'],
+          ['保存多久', '保存到你删除当天记录、清空数据，或删除应用为止。如果你开启设备备份（iCloud 或电脑），本机数据可能随系统备份进入你自己的备份空间，我们不参与也读不到。'],
+          ['你可以做什么', '可以在应用里查看和删除。设置里可以免费导出 JSON 和 Markdown。我们拿不到设备上的日记，不能远程删除。来信请用上面的邮箱，我们说明如何在设备上操作。'],
+          ['7 天先用', '安装后可以先用 7 天会员功能，到期自动关闭，不会扣款，也不是订阅。试用按开机时间在本机累计，记录存在系统钥匙串里，删除应用不会清除；重装后若记录还在，试用按已结束处理。'],
+          ['买断', '一次买断，不自动续费，没有月付。包含月历日程、通知延后、每天 3 张照片，以及除海风假日、田园风光以外的会员主题。价格以 App Store 在你所在地区显示的价格为准。购买和恢复购买由 Apple 处理，我们接触不到你的支付信息。'],
+          ['不是诊疗', '日记豆只记录日常心情，不提供诊断、治疗、心理评估或用药建议。'],
+          ['儿童', '本应用不面向 14 岁以下儿童。'],
+          ['发行地区', '本应用在 13 个地区发行：中国大陆、美国、日本、法国、巴西、澳大利亚、英国、爱尔兰、加拿大、新西兰、新加坡、中国香港地区、中国台湾地区。不论在哪个地区，都不建账号、不做广告、不做追踪、不出售也不共享个人数据、不上传日记；日记、心情、标签、照片和日程只存在你自己的设备上；你可以随时查看和删除，并在设置里免费导出 JSON 与 Markdown；来信请用上面的邮箱。只有两处另有约定：中国大陆——进入前需要你点「同意并进入」，没有默认勾选，同意前不联网；法国、爱尔兰及欧盟——可以查看、删除和导出自己的记录，导出免费，商家地址和电话会显示在商店页。其余地区沿用上面同一套承诺。']
+        ]
+      },
+      hant: {
+        html: 'zh-Hant',
+        name: '繁體中文',
+        title: '日記豆隱私政策',
+        meta: '更新日期 ' + UPDATED + ' · 聯絡 ' + CONTACT,
+        sections: [
+          ['我們是誰', '日記豆是記在本機上的情緒日記。聯絡郵箱是 ' + CONTACT + '。'],
+          ['存在裝置上的內容', '日記、心情、標籤、照片、日程和外觀設定只存在這臺裝置。我們讀不到這些內容。'],
+          ['我們不做的事', '沒有帳號，沒有廣告，沒有追蹤，不出售個人資料，不上傳日記，也沒有接入第三方廣告或統計元件。面容解鎖由系統核驗，我們不取得人臉資訊。你主動分享海報時，內容只按你的分享操作離開裝置。為了知道「今天」是哪一天，應用會向 apple.com 或 cloudflare.com 傳送一個不含任何內容的請求，只讀取回應裡的日期；這兩個站點按它們自己的隱私政策處理網路請求。'],
+          ['權限', '相機和相簿用於把照片放進當天日記。日曆用於把你寫下的安排抄進系統裡一本名為「日記豆」的日曆。通知用於到點提醒。面容用於開啟日記鎖。'],
+          ['儲存多久', '儲存到你刪除當天記錄、清空資料，或刪除應用為止。如果你開啟裝置備份（iCloud 或電腦），本機資料可能隨系統備份進入你自己的備份空間，我們不參與也讀不到。'],
+          ['你可以做什麼', '可以在應用裡檢視和刪除。設定裡可以免費匯出 JSON 和 Markdown。我們拿不到裝置上的日記，不能遠端刪除。來信請用上面的郵箱，我們說明如何在裝置上操作。'],
+          ['7 天先用', '安裝後可以先用 7 天會員功能，到期自動關閉，不會扣款，也不是訂閱。試用按開機時間在本機累計，記錄存在系統鑰匙串裡，刪除應用不會清除；重灌後若記錄還在，試用按已結束處理。'],
+          ['買斷', '一次買斷，不自動續費，沒有月付。包含月曆日程、通知延後、每天 3 張照片，以及除海風假日、田園風光以外的會員主題。價格以 App Store 在你所在地區顯示的價格為準。購買和恢復購買由 Apple 處理，我們接觸不到你的支付資訊。'],
+          ['不是診療', '日記豆只記錄日常心情，不提供診斷、治療、心理評估或用藥建議。'],
+          ['兒童', '本應用不面向 14 歲以下兒童。'],
+          ['發行地區', '本應用在 13 個地區發行：中國大陸、美國、日本、法國、巴西、澳大利亞、英國、愛爾蘭、加拿大、紐西蘭、新加坡、中國香港地區、中國臺灣地區。不論在哪個地區，都不建帳號、不做廣告、不做追蹤、不出售也不分享個人資料、不上傳日記；日記、心情、標籤、照片和日程只存在你自己的裝置上；你可以隨時檢視和刪除，並在設定裡免費匯出 JSON 與 Markdown；來信請用上面的郵箱。只有兩處另有約定：中國大陸——進入前需要你點「同意並進入」，沒有預設勾選，同意前不聯網；法國、愛爾蘭及歐盟——可以檢視、刪除和匯出自己的記錄，匯出免費，商家地址和電話會顯示在商店頁。其餘地區沿用上面同一套承諾。']
+        ]
+      },
+      en: {
+        html: 'en',
+        name: 'English',
+        title: 'Doby privacy policy',
+        meta: 'Updated ' + UPDATED + ' · Contact ' + CONTACT,
+        sections: [
+          ['Who we are', 'Doby is a mood diary kept on the device. Contact: ' + CONTACT + '.'],
+          ['What stays on the device', 'Entries, moods, tags, photos, plans, and appearance settings stay on this device. We cannot read them.'],
+          ['What we do not do', 'No account, no ads, no tracking, no sale of personal data, and no third-party ad or analytics SDK. The diary is not uploaded. Face unlock is checked by the system; we do not receive face data. A poster leaves the device only if you choose to share it. To know today’s date, the app sends an empty request to apple.com or cloudflare.com and reads the date in the reply; those sites handle network requests under their own privacy policies.'],
+          ['Permissions', 'Camera and photos add a picture to today’s entry. Calendar copies plans you write into a system calendar named Doby. Notifications deliver reminders. Face ID opens the diary lock.'],
+          ['How long', 'Until you delete an entry, erase the data, or delete the app. If you turn on device backups (iCloud or a computer), data on this device may go into your own backup; we are not part of that and cannot read it.'],
+          ['Your choices', 'You can view and delete entries in the app. Export to JSON and Markdown is free in Settings. We cannot delete a diary remotely because we never receive it. Email the address above and we will explain the steps on the device.'],
+          ['7-day try-out', 'You can try the member features for 7 days after installing. When it ends it closes by itself: no charge, and it is not a subscription. The trial counts uptime on this device and keeps its record in the system Keychain; deleting the app does not clear it. If the record is still there after reinstalling, the trial counts as used.'],
+          ['The unlock', 'One purchase, no renewal, no monthly plan. It includes calendar plans, snoozing reminders, 3 photos a day, and every member theme except Seaside Holiday and Pastoral. The App Store shows the local price. Apple handles the purchase and restoring it; we never see your payment details.'],
+          ['Not care', 'Doby records everyday mood. It does not diagnose, treat, assess, or advise on medication.'],
+          ['Children', 'Doby is not directed at children under 14.'],
+          ['Storefronts', 'Doby ships in 13 regions: mainland China, the United States, Japan, France, Brazil, Australia, the United Kingdom, Ireland, Canada, New Zealand, Singapore, Hong Kong, China, and Taiwan, China. Everywhere the same promises hold: no account, no ads, no tracking, no sale or sharing of personal data, and no uploading of the diary. Entries, moods, tags, photos, and plans stay on your own device. You can view and delete them at any time, and export JSON and Markdown for free in Settings. Write to the address above. Only two places differ: mainland China — you tap Agree before entering, nothing is pre-checked, and nothing goes online before that tap; France, Ireland, and the EU — you can view, delete, and export your records, export is free, and the seller address and phone appear on the store page. Everywhere else follows the same promises above.']
+        ]
+      },
+      ja: {
+        html: 'ja',
+        name: '日本語',
+        title: '日記豆プライバシーポリシー',
+        meta: '更新日 ' + UPDATED + ' · 連絡先 ' + CONTACT,
+        sections: [
+          ['運営者', '日記豆は、端末の中に残す気分の日記です。連絡先は ' + CONTACT + ' です。'],
+          ['端末に残るもの', '日記、気分、タグ、写真、予定、見た目の設定はこの端末だけにあります。私たちは読めません。'],
+          ['しないこと', 'アカウント、広告、追跡はありません。個人データを売らず、日記も送りません。第三者の広告・分析ツールも使っていません。顔認証はシステムが行い、顔のデータは受け取りません。ポスターは、あなたがシェアしたときだけ端末の外に出ます。「今日」の日付を知るために、アプリは apple.com か cloudflare.com に中身のない要求を送り、返答の日付だけを読みます。この2つのサイトは、それぞれのプライバシーポリシーに従って通信を扱います。'],
+          ['権限', 'カメラと写真は、その日の日記に画像を入れるためです。カレンダーは、書いた予定をシステムカレンダーの「日記豆」に写すためです。通知はリマインダーのためです。Face ID は日記のロックを開くためです。'],
+          ['残す期間', 'その日の記録を消す、データを消去する、またはアプリを削除するまでです。端末のバックアップ（iCloud やパソコン）を有効にすると、この端末のデータはあなた自身のバックアップに入ることがあります。私たちはそれに関係せず、読めません。'],
+          ['できること', 'アプリの中で見て、消せます。JSON と Markdown の書き出しは設定から無料です。日記は届かないので、遠隔では消せません。上のメールへ連絡すれば、端末での手順を案内します。'],
+          ['7日間のお試し', 'インストール後、7日間だけ会員機能を試せます。期間が終わると自動的に閉じます。請求はなく、サブスクリプションでもありません。試用は端末の起動時間で数え、記録はシステムのキーチェーンに保存されます。アプリを削除しても記録は消えません。再インストール時に記録が残っていれば、試用は終了したものとして扱います。'],
+          ['買い切り', '一度の支払いで、自動更新も月払いもありません。カレンダーの予定、通知の延期、1日3枚の写真、そして海辺の休日と田園以外の会員テーマが含まれます。価格は App Store に現地通貨で表示されます。購入と復元は Apple が処理し、支払い情報は私たちに届きません。'],
+          ['医療ではありません', '日記豆は日々の気分を残すだけで、診断、治療、心理検査、薬の助言はしません。'],
+          ['子ども', '14歳未満の子ども向けではありません。'],
+          ['販売する地域', '本アプリは 13 の地域で販売します：中国本土、米国、日本、フランス、ブラジル、オーストラリア、英国、アイルランド、カナダ、ニュージーランド、シンガポール、中国香港、中国台湾。どの地域でも同じ約束です。アカウントも広告も追跡もなく、個人データを売らず共有せず、日記を送りません。日記、気分、タグ、写真、予定はあなたの端末だけにあります。いつでも見て消せて、設定から JSON と Markdown を無料で書き出せます。連絡は上のメールへ。違うのは2か所だけです。中国本土——入る前に「同意して入る」を押します。最初から選ばれた状態にはせず、同意の前には通信しません。フランス、アイルランドと EU——自分の記録を見て、消し、書き出せます。書き出しは無料で、販売者の住所と電話がストアに出ます。それ以外の地域は上の同じ約束のままです。']
+        ]
+      },
+      fr: {
+        html: 'fr',
+        name: 'Français',
+        title: 'Politique de confidentialité',
+        meta: 'Mise à jour ' + UPDATED + ' · Contact ' + CONTACT,
+        sections: [
+          ['Qui', 'Journal-haricot est un journal d’humeur gardé sur l’appareil. Contact : ' + CONTACT + '.'],
+          ['Ce qui reste sur l’appareil', 'Le journal, l’humeur, les étiquettes, les photos, les rendez-vous et l’apparence restent sur cet appareil. Nous ne pouvons pas les lire.'],
+          ['Ce que nous ne faisons pas', 'Pas de compte, pas de publicité, pas de suivi, pas de vente de données, et aucun SDK tiers de publicité ou d’analyse. Le journal n’est pas envoyé. Le visage est vérifié par le système. Une affiche ne sort de l’appareil que si tu la partages. Pour connaître la date du jour, l’app envoie une requête vide à apple.com ou cloudflare.com et lit la date dans la réponse ; ces sites traitent les requêtes selon leurs propres politiques.'],
+          ['Autorisations', 'L’appareil photo et les photos ajoutent une image au jour. Le calendrier copie tes rendez-vous dans un calendrier nommé Journal-haricot. Les notifications servent aux rappels. Face ID ouvre le verrou.'],
+          ['Durée', 'Jusqu’à ce que tu effaces un jour, les données, ou l’app. Si tu actives les sauvegardes de l’appareil (iCloud ou ordinateur), les données peuvent rejoindre ta propre sauvegarde ; nous n’y participons pas et ne pouvons pas les lire.'],
+          ['Tes droits', 'Tu peux voir et effacer dans l’app. L’export JSON et Markdown est gratuit dans les réglages. Nous ne pouvons pas effacer à distance. Écris à l’adresse ci-dessus pour les étapes sur l’appareil.'],
+          ['Essai de 7 jours', 'Après l’installation, tu peux essayer les fonctions membres pendant 7 jours. À la fin, tout se ferme tout seul : aucun prélèvement, et ce n’est pas un abonnement. L’essai compte le temps d’allumage sur l’appareil et sa trace reste dans le trousseau système ; supprimer l’app ne l’efface pas. Si la trace est encore là après une réinstallation, l’essai est considéré comme utilisé.'],
+          ['L’achat', 'Un paiement, sans renouvellement, sans abonnement mensuel. Cela comprend les rendez-vous du calendrier, le report des rappels, 3 photos par jour, et tous les thèmes membres sauf Vacances au bord de la mer et Campagne. L’App Store affiche le prix local. Apple traite l’achat et la restauration ; nous ne voyons jamais tes coordonnées de paiement.'],
+          ['Pas un soin', 'L’app note l’humeur du quotidien. Elle ne diagnostique pas, ne soigne pas, n’évalue pas et ne conseille pas de médicament.'],
+          ['Enfants', 'L’app ne s’adresse pas aux enfants de moins de 14 ans.'],
+          ['Pays', 'L’app est diffusée dans 13 régions : Chine continentale, États-Unis, Japon, France, Brésil, Australie, Royaume-Uni, Irlande, Canada, Nouvelle-Zélande, Singapour, Hong Kong, Chine, et Taïwan, Chine. Partout, les mêmes promesses : pas de compte, pas de publicité, pas de suivi, pas de vente ni de partage des données personnelles, et le journal n’est pas envoyé. Le journal, l’humeur, les étiquettes, les photos et les rendez-vous restent sur ton appareil. Tu peux les voir et les effacer à tout moment, et exporter JSON et Markdown gratuitement dans les réglages. Écris à l’adresse ci-dessus. Seuls deux endroits diffèrent : la Chine continentale — tu appuies sur Accepter avant d’entrer, rien n’est coché d’avance, et aucune connexion n’a lieu avant ce geste ; la France, l’Irlande et l’Union européenne — tu peux voir, effacer et exporter tes enregistrements, l’export est gratuit, et l’adresse et le téléphone du vendeur s’affichent sur la page du store. Ailleurs, ce sont les mêmes promesses.']
+        ]
+      },
+      pt: {
+        html: 'pt-BR',
+        name: 'Português',
+        title: 'Política de privacidade',
+        meta: 'Atualizada em ' + UPDATED + ' · Contato ' + CONTACT,
+        sections: [
+          ['Quem somos', 'Diário-feijão é um diário de humor guardado no aparelho. Contato: ' + CONTACT + '.'],
+          ['O que fica no aparelho', 'Diário, humor, etiquetas, fotos, planos e visuais ficam neste aparelho. Não conseguimos lê-los.'],
+          ['O que não fazemos', 'Sem conta, sem anúncio, sem rastreio, sem venda de dados e sem SDK de terceiros para anúncio ou análise. O diário não é enviado. O rosto é conferido pelo sistema. Um cartaz só sai do aparelho se você compartilhar. Para saber a data de hoje, o app envia um pedido vazio a apple.com ou cloudflare.com e lê a data na resposta; esses sites tratam pedidos segundo as próprias políticas.'],
+          ['Permissões', 'Câmera e fotos colocam uma imagem no dia. O calendário copia os planos para um calendário chamado Diário-feijão. As notificações servem aos lembretes. O Face ID abre o bloqueio.'],
+          ['Por quanto tempo', 'Até você apagar um dia, apagar os dados ou apagar o app. Se você ativar backups do aparelho (iCloud ou computador), os dados podem entrar no seu próprio backup; nós não participamos disso e não conseguimos ler.'],
+          ['Seus direitos', 'Dá para ver e apagar no app. Exportar em JSON e Markdown é grátis nos ajustes. Não dá para apagar à distância. Escreva para o e-mail acima e explicamos os passos no aparelho.'],
+          ['Teste de 7 dias', 'Depois de instalar, você pode testar os recursos de membro por 7 dias. No fim, tudo se fecha sozinho: sem cobrança, e não é assinatura. O teste conta o tempo ligado no aparelho e guarda o registro no chaveiro do sistema; apagar o app não apaga o registro. Se o registro ainda estiver lá depois de reinstalar, o teste conta como usado.'],
+          ['A compra', 'Um pagamento, sem renovação e sem plano mensal. Inclui planos no calendário, adiar lembretes, 3 fotos por dia e todos os temas de membro, exceto Férias na Praia e Interior. A App Store mostra o preço local. A Apple processa a compra e a restauração; nós nunca vemos seus dados de pagamento.'],
+          ['Não é cuidado de saúde', 'O app registra o humor do dia. Não diagnostica, não trata, não avalia e não orienta sobre remédios.'],
+          ['Crianças', 'O app não é dirigido a crianças menores de 14 anos.'],
+          ['Países', 'O app é distribuído em 13 regiões: China continental, Estados Unidos, Japão, França, Brasil, Austrália, Reino Unido, Irlanda, Canadá, Nova Zelândia, Singapura, Hong Kong, China, e Taiwan, China. Em todas, as mesmas promessas: sem conta, sem anúncio, sem rastreio, sem venda ou compartilhamento de dados pessoais, e o diário não é enviado. Diário, humor, etiquetas, fotos e planos ficam no seu aparelho. Você pode ver e apagar quando quiser, e exportar JSON e Markdown de graça nos ajustes. Escreva para o endereço acima. Só dois lugares diferem: a China continental — você toca em Concordar antes de entrar, nada vem marcado, e nada vai para a rede antes disso; a França, a Irlanda e a União Europeia — você pode ver, apagar e exportar os registros, a exportação é grátis, e endereço e telefone do vendedor aparecem na loja. No resto, valem as mesmas promessas acima.']
+        ]
+      },
+      ru: {
+        html: 'ru',
+        name: 'Русский',
+        title: 'Политика конфиденциальности',
+        meta: 'Обновлено ' + UPDATED + ' · Контакт ' + CONTACT,
+        sections: [
+          ['Кто мы', 'Дневник-боб — дневник настроения на устройстве. Контакт: ' + CONTACT + '.'],
+          ['Что остаётся на устройстве', 'Дневник, настроение, метки, фото, планы и облик остаются на этом устройстве. Мы не можем их прочитать.'],
+          ['Чего мы не делаем', 'Нет аккаунта, рекламы, слежки, продажи данных и сторонних SDK для рекламы или аналитики. Дневник не отправляется. Лицо проверяет система. Плакат уходит с устройства только если вы сами им делитесь. Чтобы узнать сегодняшнюю дату, приложение отправляет пустой запрос на apple.com или cloudflare.com и читает дату из ответа; эти сайты обрабатывают запросы по своим правилам.'],
+          ['Разрешения', 'Камера и фото добавляют снимок в день. Календарь копирует планы в календарь «Дневник-боб». Уведомления нужны для напоминаний. Face ID открывает замок.'],
+          ['Срок', 'Пока вы не удалите день, данные или приложение. Если включено резервное копирование устройства (iCloud или компьютер), данные могут попасть в вашу собственную копию; мы в этом не участвуем и прочитать её не можем.'],
+          ['Ваши права', 'Записи можно смотреть и удалять в приложении. Экспорт в JSON и Markdown бесплатный в настройках. Удалённо удалить нельзя. Напишите на адрес выше — объясним шаги на устройстве.'],
+          ['Пробные 7 дней', 'После установки можно 7 дней пользоваться функциями участника. Когда срок кончается, всё закрывается само: без списаний, и это не подписка. Проба считает время работы устройства, запись хранится в системной связке ключей; удаление приложения её не стирает. Если после переустановки запись на месте, проба считается использованной.'],
+          ['Покупка', 'Один платёж, без продления и без месячного плана. Входят планы в календаре, перенос напоминаний, 3 фото в день и все темы участника, кроме «Морские каникулы» и «Деревня». Цену показывает App Store. Покупку и восстановление обрабатывает Apple; платёжные данные нам не видны.'],
+          ['Не лечение', 'Приложение записывает повседневное настроение. Оно не ставит диагноз, не лечит, не оценивает и не советует лекарства.'],
+          ['Дети', 'Приложение не предназначено для детей младше 14 лет.'],
+          ['Страны', 'Приложение выпускается в 13 регионах: материковый Китай, США, Япония, Франция, Бразилия, Австралия, Великобритания, Ирландия, Канада, Новая Зеландия, Сингапур, Гонконг, Китай, и Тайвань, Китай. Везде обещания одни и те же: нет аккаунта, рекламы, слежки, продажи и передачи личных данных, дневник не отправляется. Дневник, настроение, метки, фото и планы остаются на вашем устройстве. Их можно смотреть и удалять в любой момент, а экспорт JSON и Markdown бесплатен в настройках. Пишите на адрес выше. Отличаются только два места: материковый Китай — перед входом нужно нажать «Согласиться», ничего не отмечено заранее, и до этого сеть не используется; Франция, Ирландия и ЕС — записи можно смотреть, удалять и экспортировать, экспорт бесплатный, а адрес и телефон продавца видны на странице магазина. В остальных регионах действуют те же обещания.']
+        ]
+      }
+    };
+
+    function pick(tag) {
+      const value = (tag || '').toLowerCase();
+      // 繁体要先认，否则 zh-Hant / zh-TW / zh-HK 都会掉进简体
+      if (
+        value.startsWith('zh-hant') ||
+        value.startsWith('zh-tw') ||
+        value.startsWith('zh-hk') ||
+        value.startsWith('zh-mo')
+      ) {
+        return 'hant';
+      }
+      if (value.startsWith('zh')) return 'zh';
+      if (value.startsWith('ja')) return 'ja';
+      if (value.startsWith('fr')) return 'fr';
+      if (value.startsWith('pt')) return 'pt';
+      if (value.startsWith('ru')) return 'ru';
+      if (value.startsWith('en')) return 'en';
+      return 'zh';
+    }
+
+    function appendTextWithContact(parent, text) {
+      const parts = text.split(CONTACT);
+      parts.forEach((part, index) => {
+        if (index > 0) {
+          const link = document.createElement('a');
+          link.href = 'mailto:' + CONTACT;
+          link.textContent = CONTACT;
+          parent.appendChild(link);
+        }
+        if (part) parent.appendChild(document.createTextNode(part));
+      });
+    }
+
+    function render(id) {
+      const copy = COPY[id];
+      document.documentElement.lang = copy.html;
+      document.title = copy.title;
+      document.getElementById('title').textContent = copy.title;
+      document.getElementById('meta').textContent = copy.meta;
+      const body = document.getElementById('body');
+      body.replaceChildren();
+      copy.sections.forEach(([heading, text]) => {
+        const h2 = document.createElement('h2');
+        h2.textContent = heading;
+        const p = document.createElement('p');
+        appendTextWithContact(p, text);
+        body.append(h2, p);
+      });
+      document.querySelectorAll('#langs button').forEach((button) => {
+        button.setAttribute('aria-pressed', button.dataset.id === id ? 'true' : 'false');
+      });
+    }
+
+    const nav = document.getElementById('langs');
+    Object.entries(COPY).forEach(([id, copy]) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.dataset.id = id;
+      button.textContent = copy.name;
+      button.addEventListener('click', () => render(id));
+      nav.appendChild(button);
+    });
+
+    const query = new URLSearchParams(location.search).get('lang');
+    render(pick(query || navigator.language));
+  </script>
+</body>
+</html>

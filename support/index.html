@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Support · 日记豆</title>
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #faf6ee; color: #292524; }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.5rem 1.25rem 3rem; }
+    h1 { font-size: 1.5rem; margin: 0 0 .25rem; }
+    h2 { font-size: 1rem; margin: 1.5rem 0 .4rem; }
+    p, li { font-size: .95rem; }
+    .meta { color: #78716c; font-size: .85rem; }
+    .foot { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e7e5e4; color: #78716c; font-size: .85rem; }
+    nav { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1rem 0 1.25rem; }
+    button { border: 1px solid #e7e5e4; background: #fff; border-radius: 999px; padding: .3rem .7rem; font: inherit; font-size: .8rem; }
+    button[aria-pressed="true"] { background: #f59e0b; border-color: #f59e0b; color: #fff; }
+    a { color: #92400e; }
+  </style>
+</head>
+<body>
+  <main>
+    <nav id="langs"></nav>
+    <h1 id="title"></h1>
+    <p class="meta" id="meta"></p>
+    <div id="body"></div>
+    <p class="foot"><a id="policy" href="../privacy/"></a></p>
+  </main>
+  <script>
+    const CONTACT = '279768958@qq.com';
+    const UPDATED = '2026-10-27';
+    const COPY = {
+      zh: {
+        html: 'zh-Hans',
+        name: '中文',
+        title: '日记豆支持',
+        meta: '更新日期 ' + UPDATED + ' · 联系 ' + CONTACT,
+        policy: '隐私政策',
+        sections: [
+          ['联系我们', '写信到 ' + CONTACT + '。请写上 iPhone 型号、iOS 版本和 App 版本（「我的 → 关于」），一般两个工作日内回信。'],
+          ['日记存在哪里', '日记、心情、标签、照片、日程和外观设置只存在这台设备（本机数据库与系统钥匙串）。我们没有服务器，读不到，也不能远程备份或恢复。删除 App 时这些内容会一起删掉。'],
+          ['换新手机', '在旧手机「我的 → 数据」点「导出 JSON」，这是含照片和日程的完整备份。新手机装好 App、走完首次设置后，用「导入备份」选这个文件。导入会覆盖当前记录，所以新手机上先别写日记。照片多时文件会比较大，用文件 App 或隔空投送传过去即可。'],
+          ['删掉记录', '单条记录在当天页里删。全部清空在「我的 → 数据 → 清空数据」。删掉之后无法恢复，也没有云端可以找回。'],
+          ['恢复购买', '换手机或重装后，打开「我的 → 买断」，点「恢复购买」，用当初购买的那个 Apple 账户。商店这次读不到购买记录时，页面会先按未购买显示，连上商店后再点一次就能恢复。'],
+          ['7 天试用', '装好后可以先免费用 7 天会员功能。这 7 天按开机时间累计，到期自动关闭，不扣款，也不是订阅。试用记录存在系统钥匙串里，卸载重装后试用按已结束处理，不会再有 7 天。它不绑 Apple 账户，所以另一台从没装过的新手机可以再试一次。'],
+          ['通知与声音', '到点提醒要先允许通知：系统「设置 → 通知 → 日记豆」。没收到时再看「专注模式」是否挡住了。提醒延后 10 分钟或 1 小时是买断里的功能。App 内的提示音会被 iPhone 侧边静音键关掉，系统里看不出这个状态，所以没声音时先看静音键。'],
+          ['界面语言', '「我的 → 偏好 → 语言」只换界面文字，日记内容不会翻译。当前提供简体中文、繁體中文、English、日本語、Français、Português、Русский。']
+        ]
+      },
+      hant: {
+        html: 'zh-Hant',
+        name: '繁體中文',
+        title: '日記豆支援',
+        meta: '更新日期 ' + UPDATED + ' · 聯絡 ' + CONTACT,
+        policy: '隱私政策',
+        sections: [
+          ['聯絡我們', '寫信到 ' + CONTACT + '。請寫上 iPhone 型號、iOS 版本和 App 版本（「我的 → 關於」），一般兩個工作天內回信。'],
+          ['日記存在哪裡', '日記、心情、標籤、照片、日程和外觀設定只存在這臺裝置（本機資料庫與系統鑰匙串）。我們沒有伺服器，讀不到，也不能遠端備份或還原。刪除 App 時這些內容會一起刪掉。'],
+          ['換新手機', '在舊手機「我的 → 資料」點「匯出 JSON」，這是含照片和日程的完整備份。新手機裝好 App、走完首次設定後，用「匯入備份」選這個檔案。匯入會覆蓋目前記錄，所以新手機上先別寫日記。照片多時檔案會比較大，用檔案 App 或 AirDrop 傳過去即可。'],
+          ['刪掉記錄', '單筆記錄在當天頁裡刪。全部清空在「我的 → 資料 → 清空資料」。刪掉之後無法還原，也沒有雲端可以找回。'],
+          ['還原購買', '換手機或重裝後，開啟「我的 → 買斷」，點「還原購買」，用當初購買的那個 Apple 帳號。商店這次讀不到購買記錄時，頁面會先按未購買顯示，連上商店後再點一次就能還原。'],
+          ['7 天試用', '裝好後可以先免費用 7 天會員功能。這 7 天按開機時間累計，到期自動關閉，不扣款，也不是訂閱。試用記錄存在系統鑰匙串裡，解除安裝重裝後試用按已結束處理，不會再有 7 天。它不綁 Apple 帳號，所以另一臺從沒裝過的新手機可以再試一次。'],
+          ['通知與聲音', '到點提醒要先允許通知：系統「設定 → 通知 → 日記豆」。沒收到時再看「專注模式」是否擋住了。提醒延後 10 分鐘或 1 小時是買斷裡的功能。App 內的提示音會被 iPhone 側邊靜音鍵關掉，系統裡看不出這個狀態，所以沒聲音時先看靜音鍵。'],
+          ['介面語言', '「我的 → 偏好 → 語言」只換介面文字，日記內容不會翻譯。目前提供簡體中文、繁體中文、English、日本語、Français、Português、Русский。']
+        ]
+      },
+      en: {
+        html: 'en',
+        name: 'English',
+        title: 'Doby support',
+        meta: 'Updated ' + UPDATED + ' · Contact ' + CONTACT,
+        policy: 'Privacy policy',
+        sections: [
+          ['Contact us', 'Write to ' + CONTACT + '. Include your iPhone model, iOS version, and app version (Me → About). We usually reply within two working days.'],
+          ['Where entries live', 'Entries, moods, tags, photos, plans, and appearance settings live only on this device — the local database and the system Keychain. We run no server, so we cannot read them, back them up, or restore them. Deleting the app deletes all of it.'],
+          ['Moving to a new iPhone', 'On the old iPhone open Me → Data and tap Export JSON. That is the full backup, photos and plans included. Install the app on the new iPhone, finish the first-run setup, then use Import backup and pick that file. Importing replaces what is currently there, so do not write new entries on the new phone first. If you have many photos the file gets large; send it with Files or AirDrop.'],
+          ['Deleting entries', 'Delete a single entry from its day page. To clear everything use Me → Data → Erase data. Deleted means gone: there is no cloud copy to restore from.'],
+          ['Restoring the purchase', 'After a new phone or a reinstall, open Me → Buy once and tap Restore purchase, signed in to the Apple Account you bought it with. If the store cannot be read right then, the page shows the unpurchased state first; tap Restore again once the store connects.'],
+          ['The 7-day try-out', 'You can use the member features free for 7 days. The count is uptime on this device; when it ends everything closes by itself, with no charge, and it is not a subscription. The record sits in the system Keychain, so deleting and reinstalling the app counts the trial as used — you will not get another 7 days. It is not tied to an Apple Account, so a different phone that never had the app gets its own 7 days.'],
+          ['Notifications and sound', 'Reminders need notification permission: Settings → Notifications → Doby. If nothing arrives, also check Focus. Snoozing a reminder by 10 minutes or 1 hour is part of the purchase. In-app sounds are muted by the iPhone side switch, and the app cannot detect that state, so check the switch first when there is no sound.'],
+          ['Interface language', 'Me → Preferences → Language changes interface text only; entries are never translated. Available: 简体中文, 繁體中文, English, 日本語, Français, Português, Русский.']
+        ]
+      },
+      ja: {
+        html: 'ja',
+        name: '日本語',
+        title: '日記豆サポート',
+        meta: '更新日 ' + UPDATED + ' · 連絡先 ' + CONTACT,
+        policy: 'プライバシーポリシー',
+        sections: [
+          ['お問い合わせ', CONTACT + ' までメールしてください。iPhone の機種、iOS のバージョン、アプリのバージョン（「わたし → このアプリについて」）をお書きください。通常 2 営業日以内に返信します。'],
+          ['日記の保存場所', '日記、気分、タグ、写真、予定、見た目の設定は、この端末（端末内のデータベースとシステムのキーチェーン）だけにあります。サーバーを持っていないため、読むことも、遠隔でバックアップや復元もできません。アプリを削除すると一緒に消えます。'],
+          ['新しい iPhone への移行', '古い端末で「わたし → データ」の「JSON を書き出す」を押します。写真と予定を含む完全なバックアップです。新しい端末にアプリを入れ、初回設定を終えたら「バックアップを読み込む」でそのファイルを選びます。読み込むと現在の記録は上書きされるので、新しい端末では先に日記を書かないでください。写真が多いとファイルが大きくなります。ファイル App か AirDrop で移してください。'],
+          ['記録の削除', '1 件ずつはその日の画面から削除します。すべて消すときは「わたし → データ → データを消去」です。削除した記録は戻せません。クラウドに控えはありません。'],
+          ['購入の復元', '機種変更や再インストールのあとは「わたし → 買い切り」を開き、「購入を復元」を押します。購入したときの Apple アカウントで行ってください。そのときストアを読めない場合は未購入として表示されます。ストアにつながってからもう一度押せば復元できます。'],
+          ['7 日間のお試し', 'インストール後、7 日間は会員機能を無料で使えます。この 7 日は端末の起動時間で数え、終わると自動的に閉じます。請求はなく、サブスクリプションでもありません。記録はシステムのキーチェーンに残るため、削除して入れ直すと試用は終了扱いになり、もう 7 日は付きません。Apple アカウントには結び付かないので、一度も入れていない別の端末では改めて 7 日間試せます。'],
+          ['通知と音', '時刻の通知には通知の許可が必要です。「設定 → 通知 → 日記豆」を確認してください。届かないときは集中モードも見てください。通知を 10 分または 1 時間延ばすのは買い切りの機能です。アプリ内の音は iPhone の横のスイッチで消え、アプリからはその状態が分かりません。音が出ないときはまずスイッチを確認してください。'],
+          ['表示言語', '「わたし → 設定 → 言語」は表示の文字だけを変えます。日記の中身は翻訳されません。简体中文、繁體中文、English、日本語、Français、Português、Русский に対応しています。']
+        ]
+      },
+      fr: {
+        html: 'fr',
+        name: 'Français',
+        title: 'Assistance Journal-haricot',
+        meta: 'Mise à jour ' + UPDATED + ' · Contact ' + CONTACT,
+        policy: 'Politique de confidentialité',
+        sections: [
+          ['Nous écrire', 'Écris à ' + CONTACT + '. Indique le modèle d’iPhone, la version d’iOS et la version de l’app (Moi → À propos). Nous répondons en général sous deux jours ouvrés.'],
+          ['Où vivent les notes', 'Les notes, humeurs, étiquettes, photos, rendez-vous et réglages d’apparence restent sur cet appareil : base locale et trousseau du système. Nous n’avons pas de serveur : nous ne pouvons ni les lire, ni les sauvegarder, ni les restaurer à distance. Supprimer l’app efface tout.'],
+          ['Changer d’iPhone', 'Sur l’ancien, ouvre Moi → Données et touche Exporter en JSON. C’est la sauvegarde complète, photos et rendez-vous compris. Installe l’app sur le nouveau, termine le premier lancement, puis utilise Importer une sauvegarde et choisis ce fichier. L’import remplace le contenu actuel : n’écris pas de notes sur le nouveau téléphone avant. Avec beaucoup de photos le fichier devient lourd ; passe par Fichiers ou AirDrop.'],
+          ['Effacer', 'Une note s’efface depuis sa journée. Pour tout effacer : Moi → Données → Effacer les données. Une fois effacé, c’est définitif : il n’y a aucune copie dans le cloud.'],
+          ['Restaurer l’achat', 'Après un nouveau téléphone ou une réinstallation, ouvre Moi → Achat unique et touche Restaurer l’achat, avec le compte Apple utilisé lors de l’achat. Si la boutique est illisible à ce moment, la page affiche d’abord l’état non acheté ; retouche Restaurer une fois la connexion revenue.'],
+          ['Essai de 7 jours', 'Tu peux utiliser les fonctions membres gratuitement pendant 7 jours. Le décompte suit le temps d’allumage de l’appareil ; à la fin tout se ferme seul, sans prélèvement, et ce n’est pas un abonnement. La trace est dans le trousseau du système : désinstaller puis réinstaller compte l’essai comme utilisé, tu n’auras pas 7 jours de plus. Elle n’est pas liée à un compte Apple : un autre téléphone qui n’a jamais eu l’app a droit à ses propres 7 jours.'],
+          ['Notifications et son', 'Les rappels demandent l’autorisation de notification : Réglages → Notifications → Journal-haricot. Si rien n’arrive, vérifie aussi Concentration. Reporter un rappel de 10 minutes ou 1 heure fait partie de l’achat. Les sons de l’app sont coupés par l’interrupteur latéral de l’iPhone, un état que l’app ne peut pas détecter : regarde d’abord cet interrupteur.'],
+          ['Langue', 'Moi → Préférences → Langue ne change que les textes de l’interface ; le contenu des notes n’est jamais traduit. Disponible : 简体中文, 繁體中文, English, 日本語, Français, Português, Русский.']
+        ]
+      },
+      pt: {
+        html: 'pt-BR',
+        name: 'Português',
+        title: 'Suporte do Diário-feijão',
+        meta: 'Atualizado em ' + UPDATED + ' · Contato ' + CONTACT,
+        policy: 'Política de privacidade',
+        sections: [
+          ['Fale com a gente', 'Escreva para ' + CONTACT + '. Informe o modelo do iPhone, a versão do iOS e a versão do app (Eu → Sobre). Costumamos responder em até dois dias úteis.'],
+          ['Onde ficam as anotações', 'Anotações, humor, etiquetas, fotos, planos e aparência ficam só neste aparelho: banco local e chaveiro do sistema. Não temos servidor, então não conseguimos ler, fazer backup nem restaurar à distância. Apagar o app apaga tudo.'],
+          ['Trocar de iPhone', 'No aparelho antigo abra Eu → Dados e toque em Exportar JSON. É o backup completo, com fotos e planos. Instale o app no novo, conclua a primeira configuração e use Importar backup para escolher esse arquivo. A importação substitui o que já existe, então não escreva nada no aparelho novo antes. Com muitas fotos o arquivo fica grande; envie por Arquivos ou AirDrop.'],
+          ['Apagar', 'Uma anotação se apaga na página do dia. Para apagar tudo: Eu → Dados → Apagar dados. Depois de apagar não há como voltar: não existe cópia na nuvem.'],
+          ['Restaurar a compra', 'Depois de trocar de aparelho ou reinstalar, abra Eu → Compra única e toque em Restaurar compra, com a conta Apple usada na compra. Se a loja não puder ser lida naquele momento, a página mostra primeiro o estado não comprado; toque de novo quando a loja conectar.'],
+          ['Teste de 7 dias', 'Dá para usar os recursos de membro de graça por 7 dias. A contagem segue o tempo ligado deste aparelho; no fim tudo se fecha sozinho, sem cobrança, e não é assinatura. O registro fica no chaveiro do sistema: desinstalar e reinstalar conta o teste como usado, sem outros 7 dias. Ele não é ligado a uma conta Apple, então outro aparelho que nunca teve o app tem os próprios 7 dias.'],
+          ['Notificações e som', 'Os lembretes precisam de permissão: Ajustes → Notificações → Diário-feijão. Se nada chegar, veja também o Modo de Foco. Adiar um lembrete por 10 minutos ou 1 hora faz parte da compra. Os sons do app são silenciados pela chave lateral do iPhone, estado que o app não consegue detectar: olhe a chave primeiro.'],
+          ['Idioma', 'Eu → Preferências → Idioma muda apenas os textos da interface; o conteúdo das anotações não é traduzido. Disponível: 简体中文, 繁體中文, English, 日本語, Français, Português, Русский.']
+        ]
+      },
+      ru: {
+        html: 'ru',
+        name: 'Русский',
+        title: 'Поддержка «Дневник-боб»',
+        meta: 'Обновлено ' + UPDATED + ' · Контакт ' + CONTACT,
+        policy: 'Политика конфиденциальности',
+        sections: [
+          ['Написать нам', 'Пишите на ' + CONTACT + '. Укажите модель iPhone, версию iOS и версию приложения (Я → О приложении). Обычно отвечаем в течение двух рабочих дней.'],
+          ['Где хранятся записи', 'Записи, настроение, метки, фото, планы и оформление остаются только на этом устройстве: локальная база и системная связка ключей. У нас нет сервера, поэтому мы не можем их прочитать, сохранить или восстановить удалённо. Удаление приложения удаляет всё.'],
+          ['Переход на новый iPhone', 'На старом устройстве откройте Я → Данные и нажмите «Экспорт JSON». Это полная копия, включая фото и планы. Установите приложение на новый, пройдите первый запуск и выберите «Импорт копии» с этим файлом. Импорт заменяет текущие записи, поэтому не пишите на новом устройстве заранее. С большим числом фото файл крупный; передайте его через «Файлы» или AirDrop.'],
+          ['Удаление', 'Одну запись удаляют на странице дня. Чтобы удалить всё: Я → Данные → Очистить данные. После удаления вернуть нельзя: копии в облаке нет.'],
+          ['Восстановление покупки', 'После смены устройства или переустановки откройте Я → Разовая покупка и нажмите «Восстановить покупку», войдя в тот же Apple Account. Если магазин в этот момент недоступен, страница сначала покажет состояние «не куплено»; нажмите ещё раз, когда магазин ответит.'],
+          ['Пробные 7 дней', 'Функции участника можно бесплатно пробовать 7 дней. Отсчёт идёт по времени работы устройства; когда срок кончается, всё закрывается само, без списаний, и это не подписка. Запись хранится в системной связке ключей: удаление и переустановка считают пробу использованной, ещё 7 дней не будет. Она не привязана к Apple Account, поэтому на другом устройстве, где приложения не было, будет своя проба.'],
+          ['Уведомления и звук', 'Напоминаниям нужно разрешение: Настройки → Уведомления → «Дневник-боб». Если ничего не приходит, проверьте и режим фокусирования. Отложить напоминание на 10 минут или 1 час — функция покупки. Звуки в приложении отключает боковой переключатель iPhone, и приложение не видит его состояние: если звука нет, проверьте переключатель.'],
+          ['Язык интерфейса', 'Я → Настройки → Язык меняет только текст интерфейса; содержимое записей не переводится. Доступны: 简体中文, 繁體中文, English, 日本語, Français, Português, Русский.']
+        ]
+      }
+    };
+
+    function pick(tag) {
+      const value = (tag || '').toLowerCase();
+      // 繁体要先认，否则 zh-Hant / zh-TW / zh-HK 都会掉进简体
+      if (value.startsWith('zh-hant') || value.startsWith('zh-tw') || value.startsWith('zh-hk') || value.startsWith('zh-mo')) {
+        return 'hant';
+      }
+      if (value.startsWith('zh')) return 'zh';
+      if (value.startsWith('ja')) return 'ja';
+      if (value.startsWith('fr')) return 'fr';
+      if (value.startsWith('pt')) return 'pt';
+      if (value.startsWith('ru')) return 'ru';
+      if (value.startsWith('en')) return 'en';
+      return 'zh';
+    }
+
+    function appendTextWithContact(parent, text) {
+      const parts = text.split(CONTACT);
+      parts.forEach((part, index) => {
+        if (index > 0) {
+          const link = document.createElement('a');
+          link.href = 'mailto:' + CONTACT;
+          link.textContent = CONTACT;
+          parent.appendChild(link);
+        }
+        if (part) parent.appendChild(document.createTextNode(part));
+      });
+    }
+
+    function render(id) {
+      const copy = COPY[id];
+      document.documentElement.lang = copy.html;
+      document.title = copy.title;
+      document.getElementById('title').textContent = copy.title;
+      document.getElementById('meta').textContent = copy.meta;
+      document.getElementById('policy').textContent = copy.policy;
+      const body = document.getElementById('body');
+      body.replaceChildren();
+      copy.sections.forEach(([heading, text]) => {
+        const h2 = document.createElement('h2');
+        h2.textContent = heading;
+        const p = document.createElement('p');
+        appendTextWithContact(p, text);
+        body.append(h2, p);
+      });
+      document.querySelectorAll('#langs button').forEach((button) => {
+        button.setAttribute('aria-pressed', button.dataset.id === id ? 'true' : 'false');
+      });
+    }
+
+    const nav = document.getElementById('langs');
+    Object.entries(COPY).forEach(([id, copy]) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.dataset.id = id;
+      button.textContent = copy.name;
+      button.addEventListener('click', () => render(id));
+      nav.appendChild(button);
+    });
+
+    const query = new URLSearchParams(location.search).get('lang');
+    render(pick(query || navigator.language));
+  </script>
+</body>
+</html>
